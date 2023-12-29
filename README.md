@@ -11,7 +11,7 @@ A: No, but the recursive Fibonacci calculation is a great and simple example tha
 
 Q: Aren't there better performing ways to calculate the Fibonacci sequence than the recursive method?
 
-A: Well, yes, but I need somthing "slow" to demonstrate the memoization 🙂 I have included two other options in the end, for good measure...
+A: Well, yes, but I need somthing "slow" to demonstrate the memoization 🙂 I have included two other options in the end, for good measure... (Although one could argue that the recursive function is the "right" way to do it)
 
 
 Q: What's memoization?
@@ -21,13 +21,12 @@ A:
 
 See https://en.wikipedia.org/wiki/Memoization
 
-Recursion is not a preprequisite for optimizing by memoizataion, any pure function can benefit from it. "Pure" in this sense is that any given input always returns the same result, and there are no "side-effects", like changing parameters, database updates, non-local data, etc.
+Recursion is not a prerequisite for optimizing by memoization - any pure function can benefit from it. "Pure" in this sense means that any given input always returns the same result, and there are no "side-effects", like changing parameters, database updates, non-local data, etc.
 
 
 ## Fibonacci Sequence
-The [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) is a mathematical sequence in which each number is the sum of the two preceeding numbers.
-The n:th number in the sequence is f(n) = f(n-1) + f(n-2), with f(0) = 0 and f(1) = 1.
-Making the sequence start with 0, 1, 1, 2, 3, 5, 8, 13, 21...
+The [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_sequence) is a mathematical sequence in which each number is the sum of the two preceding numbers.
+The n:th number in the sequence is f(n) = f(n-1) + f(n-2), with f(0) = 0 and f(1) = 1, making the sequence start with 0, 1, 1, 2, 3, 5, 8, 13, 21...
 
 Writing this in ABAP is quite simple with the method definition:
 ```ABAP
@@ -60,12 +59,12 @@ This performs ok for low n, but will soon prove to be quite costly, and this is 
 | 39 | 47.39s  |
 | 40 | 76s     |
 
-I don't have the patience to wait for the 41 😁. The reason this is slow, is because we calculate the previous two numbers for every number we want, and this is not an efficient way.
+I don't have the patience to wait for the 41 😁. The reason this is slow is because we calculate the previous two numbers for every number we want, and this is not an efficient way.
 For instance, when we want f(6), as in the diagram below, the system has to calculate f(4) 2 times, f(3) 3 times and f(2) 5 times.
 
 ![image](https://github.com/joltdx/abap-memoization-example/assets/74537631/499e3fdb-c3e3-4004-b8ae-df1a87040c01)
 
-It's the repetitions that makes this an expensive function in this case.
+It's the repetitions that makes this an expensive function in this case, but there can be many other reasons for an expensive function.
 
 ## Making it memoized
 So, while no problem for really low numbers, we see that n = 32 already takes 1.66 seconds, and n = 40 a whopping 76 seconds.
@@ -159,4 +158,4 @@ METHOD fib_math.
                   dec = 0 ).
 ENDMETHOD.
 ```
-Both these non-recursive methods also calculate in <0.01s
+Both these non-recursive methods also calculate in <0.01s on my system
