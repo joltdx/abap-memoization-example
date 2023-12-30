@@ -62,7 +62,8 @@ This performs ok for low n, but will soon prove to be quite costly, and this is 
 I don't have the patience to wait for the 41 😁. The reason this is slow is because we calculate the previous two numbers for every number we want, and this is not an efficient way.
 For instance, when we want f(6), as in the diagram below, the system has to calculate f(4) 2 times, f(3) 3 times and f(2) 5 times.
 
-![image](https://github.com/joltdx/abap-memoization-example/assets/74537631/499e3fdb-c3e3-4004-b8ae-df1a87040c01)
+![image](https://github.com/joltdx/abap-memoization-example/assets/74537631/9c1657b0-f23f-45a4-8f1e-1b1d81ece483)
+
 
 It's the repetitions that makes this an expensive function in this case, but there can be many other reasons for an expensive function.
 
